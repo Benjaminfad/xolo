@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>contact form xolo</title>
+   <link rel="stylesheet" href="landing2.css">
+</head>
+<body>
+    <div class="container">
+       <form id="myForm">
+        <h3>GET IN TOUCH WITH US</h3>
+        <label for="name">NAME</label>
+        <input type="text" id="name" placeholder="Your Name" name="name" required>
+        <label for="email">EMAIL</label>
+        <input type="email" id="email" placeholder="Email Address" name="email" required>
+        <label for="subject">SUBJECT</label>
+        <input type="subject" id="subject" placeholder="Subject" name="subject" required>
+        <label for="message">MESSAGE</label>
+        <textarea id="message" rows="4" placeholder="Message" name="message"></textarea>
+        <button type="submit">SUBMIT</button>
+       </form>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script type="text/javascript">      (function () {
+        emailjs.init("AqcwFAWOQMHZsaGmS");
+      })();
+    </script>
+    <script>
+        
+        // listen to the form submission
+        document
+          .getElementById("myForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+  
+            const serviceID = "service_us46k6q";
+            const templateID = "template_el1r8z8";
+  
+            // send the email here
+            emailjs.sendForm(serviceID, templateID, this).then(
+              (response) => {
+                console.log("SUCCESS!", response.status, response.text);
+                alert("SUCCESS!");
+              },
+              (error) => {
+                console.log("FAILED...", error);
+                alert("FAILED...", error);
+              }
+            );
+          });
+      </script>
+</body>
+</html>
